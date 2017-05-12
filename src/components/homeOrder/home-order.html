@@ -1,0 +1,34 @@
+<div class="nav">
+  <a class="col-xs-3" href="javascript:history.back();">
+
+  </a>
+  <div class="col-xs-6 nav-title">订单</div>
+</div>
+
+<div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='0' style="margin-top: 55px;margin-bottom: 55px;">
+  <div class="weui-cells" ng-repeat="list in reddit.items" style="margin-top: 15px;">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <p style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width: 200px;font-size: 14px;float: left;">{{list.shopName}}</p>
+        <img src="images/icon_enter@2x.png" width="8" height="12" style="margin-left: 5px;float: left;margin-top: 3px;">
+      </div>
+      <div class="weui-cell__ft" style="color: #ff6e15;">{{list.statusName}}</div>
+    </div>
+    <a class="weui-cell" ui-sref="homeTabs.orderdetail({orderType:list.orderType,orderId:list.orderId,img:list.shopLogo,bizId:list.bizId,shopName:list.shopName})">
+      <div class="weui-cell__hd"><img ng-src="{{list.shopLogo}}" width="45px" height="45px"></div>
+      <div class="weui-cell__bd" style="font-size: 14px;margin-left: 5px;color: #333;">
+        <p>订单金额：<span style="color: #ff6e15;">{{list.orderPayCost}}</span></p>
+        <p style="color: #999;">{{list.orderingTime}}</p>
+      </div>
+    </a>
+  </div>
+
+  <div ng-show="reddit.loading" class="weui-loadmore" style="margin: 0.5em auto ;">
+    <i class="weui-loading"></i>
+    <span class="weui-loadmore__tips">正在加载</span>
+  </div>
+
+  <!-- 	<div ng-show="overData" class="weui-loadmore weui-loadmore_line">
+	  <span class="weui-loadmore__tips">暂无数据</span>
+	</div> -->
+</div>

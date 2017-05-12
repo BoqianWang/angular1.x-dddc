@@ -1,0 +1,51 @@
+<div>
+	<div class="weui-cells">
+		<div class="weui-cell" style="padding: 7px 15px;">
+			<div class="weui-cell__bd">
+				<input class="weui-input" id="tixianCode" type="number" placeholder="绑定手机验证码">
+			</div>
+			<div class="weui-cell__ft">
+				<button class="weui-btn" ng-class="codeClass" ng-disabled="!isCodeClick" ng-click="codeClick()"> <i class="weui-loading" ng-show="isreq"></i>{{codemsg}}</button>
+			</div>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<input  class="weui-input" id="tixianBank" type="text" placeholder="选择银行卡" readonly="readonly" ng-click="seleteBank()" ng-model="inputBank">
+			</div>
+			<a class="weui-cell__ft" ui-sref="homeTabs.addbank">添加银行卡</a>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<input class="weui-input" id="tixianMoney" type="number" placeholder="提现金额">
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="login-div">
+		<button class="weui-btn weui-btn_primary login-btn" ng-click="tixianBtnClick()">提现</button>
+	</div>
+
+</div>
+
+
+
+<div id="bankList" class="weui-popup__container popup-bottom">
+  <div class="weui-popup__overlay" style="opacity:0.6;"></div>
+  <div class="weui-popup__modal">
+    <div class="weui-cells">
+	  <div class="weui-cell" ng-repeat="list in bankList" ng-click="bankCellClick(list)">
+	    <div class="weui-cell__bd">
+	      <p>{{list.cardName}}{{list.cardNumbe}}</p>
+	    </div>
+	  </div>
+	</div>
+	<div class="weui-cells" style="margin-top: 5px;">
+	  <a class="weui-cell close-popup">
+	    <div class="weui-cell__bd" style="text-align: center;">
+	      <p>取消</p>
+	    </div>
+	  </a>
+	</div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div>
+	<div class="weui-cells">
+		<div class="weui-cell" style="padding: 7px 15px;">
+			<div class="weui-cell__bd">
+				<input class="weui-input" id="addBankCode" type="number" placeholder="绑定手机验证码">
+			</div>
+			<div class="weui-cell__ft">
+				<button class="weui-btn" ng-class="codeClass" ng-disabled="!isCodeClick" ng-click="codeClick()"> <i class="weui-loading" ng-show="isreq"></i>{{codemsg}}</button>
+			</div>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<input ng-blur="inputBlur()" class="weui-input" id="addBankCard" type="text" placeholder="请输入银行卡号" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')">
+			</div>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<input class="weui-input" id="addBankName" type="text" placeholder="所属银行如:建设银行">
+			</div>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<input class="weui-input" id="addBankCity" type="text" placeholder="开卡所在城市">
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="login-div">
+		<button class="weui-btn weui-btn_primary login-btn" ng-click="addBankClick()">添加</button>
+	</div>
+
+</div>

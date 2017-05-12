@@ -1,0 +1,69 @@
+ <a class="weui-cell address-cell weui-cell_access" ui-sref="homeTabs.addresslist">
+ 		<div class="weui-cell__hd"><img src="images/topbar_icon_location@2x.png" width="12px" height="17px"></div>
+	   	 <div class="weui-cell__bd" style="font-size: 16px;margin-left: 10px;" ng-show="adress">
+	      <p style="margin-bottom: 0px;">{{adress.consignee}}{{adress.gender == 1?'先生':'女士'}}&nbsp;&nbsp;&nbsp;{{adress.phone}}</p>
+	      <p style="font-size: 14px;color: #666;">{{adress.locationAddr + adress.homeNumber}}</p>
+	     </div>
+	     <div class="weui-cell__bd" style="font-size: 16px;margin-left: 10px;" ng-hide="adress">请选择地址</div>
+	     <div class="weui-cell__ft"> </div>
+</a>
+<div class="weui-cells">
+  <div class="weui-cell">
+  	  <div class="weui-cell__hd"><img ng-src="{{shopList.shopLogo?shopList.shopLogo:'images/touxiang.png'}}" width="20px" height="20px" style="border-radius: 10px;"></div>
+    <div class="weui-cell__bd">
+      <p>{{shopList.shopName}}</p>
+    </div>
+  </div>
+  <div class="weui-cell" ng-repeat="dishList in gwcArr">
+    <div class="weui-cell__bd" style="font-size: 14px;">
+      <span>{{dishList.dishName}}</span><span ng-show="dishList.si_ta_name.length>0">({{dishList.si_ta_name}})</span>
+    </div>
+    <div class="weui-cell__ft" style="color: #666;">
+    	<span style="margin-right: 20px;color: #999;">x{{dishList.dishNum}}</span>
+    	<span>￥{{dishList.dishPrice}}</span>
+    </div>
+  </div>
+  <div class="weui-cell" ng-show="shopList.distributionFee>0">
+    <div class="weui-cell__bd" style="font-size: 14px;">
+      <p>配送费</p>
+    </div>
+    <div class="weui-cell__ft" style="color: #666;">
+    	<p>￥{{shopList.distributionFee}}</p>
+    </div>
+  </div>
+  <div class="weui-cell" style="color: #ff6e15;" ng-show="fullPrice>0">
+    <div class="weui-cell__bd" style="font-size: 14px;">
+      <p>满减优惠</p>
+    </div>
+    <div class="weui-cell__ft" style="color: #ff6e15;">
+    	<p>-￥{{fullPrice}}</p>
+    </div>
+  </div>
+  <div class="weui-cell">
+    <div class="weui-cell__bd" style="font-size: 14px;">
+      <p>订单￥{{gwcPrice}}</p>
+    </div>
+    <div class="weui-cell__ft" style="color: #666;">
+    	<p>待支付￥{{orderPrice}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="weui-cells" style="margin-bottom: 50px;">
+  <div class="weui-cell">
+  <div class="weui-cell__hd">备注：</div>
+    <div class="weui-cell__bd">
+      <input class="weui-input" type="text" name="" id="ordersubremark" placeholder="口味，偏好等">
+    </div>
+  </div>
+</div>
+
+
+<div class="row shopingBar">
+	<div class="shopingPrice" style="left: 10px;line-height: 40px;">
+		<p style="font-size: 18px;">待支付￥{{orderPrice}}</p>
+	</div>
+	<a class="account" ng-click="orderSubClick()">下单提交</a>
+
+	
+</div>

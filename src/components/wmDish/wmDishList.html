@@ -1,0 +1,213 @@
+<div class="weui-cells open-popup" id="topShop" style="margin-top: -10px;" data-target="#shopDetail">
+  <!-- style="position: fixed;left: 0;width: 100%;top: 20px;z-index: 3;" -->
+  <div class="row shopList">
+    <div class="weui-cell weui-cell_access" style="padding-bottom: 5px;">
+      <div class="weui-cell__hd">
+        <img ng-src="{{list.shopLogo?list.shopLogo:'images/touxiang.png'}}" style="background-color: #f5f5f5;border-radius: 3px;" width="60" height="60">
+      </div>
+      <div class="weui-cell__bd" style="margin-left: 10px;max-width: calc(100% - 100px);">
+
+        <div class="row">
+          <p style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width: 200px;font-size: 16px;font-weight: bold;float: left;">{{list.shopName}}</p>
+          <p ng-repeat="txt in list.shopType.split('')" class="typeLabel pull-right">{{txt}}</p>
+        </div>
+        <div class="row" style="font-size: 12px;color: #999;margin: 5px 0px;">
+          {{list.avgDeliveryTime}}分钟送达&nbsp;/&nbsp;&nbsp;{{list.distributionFee==0?"免配送费":"配送费￥"+list.distributionFee}}
+        </div>
+        <div class="row" style="font-size: 12px;color: #999;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+          公告：{{list.shopAffiche}}
+        </div>
+      </div>
+      <div class="weui-cell__ft"></div>
+    </div>
+  </div>
+  <div class="row" style="padding: 0px 0px 5px 15px;color: #999;font-size: 12px;" ng-show="list.takeawayFullSubtracts.length>0">
+    <div ng-show="fulls.length>0">
+      <span class="typeLabel" style="float: left;background-color: #ff6e15;color: white;margin-top: 4px;margin-right: 4px;">满</span>
+      <p style="float: left;margin-top: 5px;">{{fulls.join("，")}}</p>
+    </div>
+    <div ng-show="firsts.length>0">
+      <span class="typeLabel" style="float: left;background-color: #ff6e15;color: white;margin-top: 4px;margin-right: 4px;">首</span>
+      <p style="float: left;margin-top: 5px;">{{firsts.join("，")}}</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- 菜品列表 -->
+<div class="row dishRow">
+  <div style="height: 100%;padding-bottom: 50px;">
+    <div style="display: flex;height: 100%;">
+
+
+      <div class="" style="padding: 0px;width: 90px;">
+        <ul class="classMenu" style="overflow-y: auto;height: 100%;" du-spy-context du-scroll-container="scroll-container">
+          <li ng-repeat="classList in classArr">
+            <a href="#{{classList.dishClassifyId}}" du-smooth-scroll du-scrollspy>{{classList.typeName}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="" style="padding: 0px;flex: 1;display: block;width: 0;position: relative;
+    height: 100%;">
+        <ul class="dishMenu" style="height: 100%;overflow-y: auto;" id="scroll-container">
+          <li ng-repeat="classObj in dishArr" id="{{classObj.dishClassifyId}}">
+            <div class="weui-cells__title" style="margin:3px 0px;font-size: 15px;color: #333;">{{classObj.typeName}}</div>
+            <div class="weui-cells" style="margin-top: 0px;">
+              <div class="weui-cell" ng-repeat="dishList in classObj.subDishArr">
+                <div class="weui-cell__bd">
+                  <span style="float: left;margin-right: 10px;">
+				      	<img src="{{dishList.dishImg}}" width="50px" height="50px" style="background-color: #f5f5f5;border-radius: 3px;">
+				      </span>
+                  <div style="float: left;width: calc(100% - 60px);">
+                    <div style="min-height: 50px;">
+                      <p style="font-size: 15px;font-weight: bold;color: #333;">{{dishList.dishName}}</p>
+                      <p style="font-size: 11px;color: #666;">已售{{dishList.dishSalesVolume}}</p>
+                    </div>
+                    <div class="row">
+                      <div class="pull-left" style="color: #f60;font-size: 16px;" ng-show="dishList.takeawayDishStandards.length<2">
+                        <span style="font-size: 12px;">￥</span>{{dishList.takeawayDishStandards[0].goingPrice}}
+                      </div>
+                      <div class="pull-right">
+                        <button class="moreSize" ng-hide="dishList.takeawayDishStandards.length<2&&dishList.takeawayDishTaste.length==0" ng-click="modelShow(dishList)">多规格</button>
+                        <button class="addDish" ng-show="dishList.takeawayDishStandards.length<2&&dishList.takeawayDishTaste.length==0" ng-click="addNomalDishClick(dishList)"></button>
+                      </div>
+                      <div class="pull-right jian_num" id="{{dishList.dishId}}" style="display: none;">
+                        <button class="reduceDish" ng-click="reduceClick(dishList)"></button>
+                        <div style="float: right;height: 30px;line-height: 30px;margin:0 10px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row shopingBar">
+  <span class="shopingImg" ng-click="showGwcClick()"><span class="shopingNum" ng-show="zongNum>0">{{zongNum}}</span></span>
+  <div class="shopingPrice">
+    <p style="font-size: 18px;height: 20px;">￥{{zongPrice}}</p>
+    <p style="font-size: 10px;color: #f5f5f5;" ng-show="list.distributionFee>0">配送费￥{{list.distributionFee}}</p>
+  </div>
+  <div ng-if="list.operatingStatus!=2">
+    <a ui-sref="homeTabs.ordersubmit" class="account" ng-show="zongPrice>=list.sendOutFee&&zongPrice>0">去结算</a>
+    <a href="" class="account" ng-hide="zongPrice>=list.sendOutFee&&zongPrice>0" style="background-color: #535356;">还差￥{{list.sendOutFee-zongPrice}}</a>
+  </div>
+  <div ng-if="list.operatingStatus==2">
+    <a href="" class="account" style="background-color: #535356;">店家休息</a>
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top: 20%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="margin: 0px 20px;">
+      <div class="modal-header" style="border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="font-size: 16px;font-weight: normal;">{{dishDetail.dishName}}</h4>
+      </div>
+      <div class="modal-body" style="padding-top: 0;">
+        <!-- 规格 -->
+        <div>
+          <p style="font-size: 14px; color: #333;">规格</p>
+          <a class="sizeNoCheck" ng-class="{true:'sizeActive'}[sizeId==sizeObj.standardId]" ng-repeat="sizeObj in dishDetail.takeawayDishStandards" ng-click="sizeClick(sizeObj)">{{sizeObj.standardName}}</a>
+        </div>
+
+        <div>
+          <p style="font-size: 14px; color: #333;margin-top: 8px;" ng-show="dishDetail.takeawayDishTaste.length>0">口味</p>
+          <a class="sizeNoCheck" ng-class="{true:'sizeActive'}[tasteId==tasteObj.tasteId]" ng-repeat="tasteObj in dishDetail.takeawayDishTaste" ng-click="tasteClick(tasteObj)">{{tasteObj.tasteName}}</a>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding-top: 10px;padding-bottom:10px;">
+        <div class="pull-left" style="color: #ff6e15;"><span style="font-size: 12px;">￥</span>{{sizePrice}}</div>
+        <button type="button" class="btn btn-primary" ng-click="moreSizeDishClick(dishDetail)">加入购物车</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="wmgwc" class="weui-popup__container popup-bottom">
+  <div class="weui-popup__overlay" style="opacity:0.6;"></div>
+  <div class="weui-popup__modal">
+    <div class="weui-cells">
+      <div class="weui-cell" style="background-color: #eceff1;color: #666;">
+        <div class="weui-cell__bd">
+          <p>购物车</p>
+        </div>
+        <div class="weui-cell__ft" ng-click="deleteShopingClick()">清空</div>
+      </div>
+      <div class="weui-cell" ng-repeat="gwcList in gwcArr" style="min-height: 55px;">
+        <div class="weui-cell__bd">
+          <p style="font-size: 16px;">{{gwcList.dishName}}</p>
+          <p style="font-size: 12px;color: #999;">{{gwcList.si_ta_name}}</p>
+        </div>
+        <div class="weui-cell__ft">
+          <div style="float: left;height: 30px;line-height: 30px;margin:0 20px;">￥{{gwcList.dishPrice}}</div>
+          <button class="reduceDish" ng-click="gwcReduceClick(gwcList)" style="float: left;"></button>
+          <div style="float: left;height: 30px;line-height: 30px;margin:0 10px;">{{gwcList.dishNum}}</div>
+          <button class="addDish" ng-click="gwcAddClick(gwcList)" style="float: left;"></button>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells" style="margin-top: 0px;height: 48px;">
+      <a class="weui-cell">
+        <div class="weui-cell__bd" style="text-align: center;">
+          <p>取消</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="shopDetail" class="weui-popup__container" style="z-index: 501;">
+  <div class="weui-popup__overlay"></div>
+  <div class="weui-popup__modal rightPop" style="background-color: #f5f5f5;">
+    <div class="nav" style="position: relative;">
+      <a class="col-xs-3 close-popup nav_left">
+        <img src="./images/back_white@2x.png">
+      </a>
+      <div class="col-xs-6 nav-title">店铺详情</div>
+    </div>
+
+    <div class="weui-cells" style="margin-top: 10px;">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p class="shopDetailTxt"><span class="shopDetailLabel">餐厅简介：</span>{{list.shopIntro}}</p>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p class="shopDetailTxt"><span class="shopDetailLabel">餐厅公告：</span>{{list.shopAffiche}}</p>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p class="shopDetailTxt"><span class="shopDetailLabel">餐厅地址：</span>{{list.shopStreet}}</p>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p class="shopDetailTxt"><span class="shopDetailLabel">餐厅电话：</span>{{list.tel}}</p>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <p class="shopDetailTxt"><span class="shopDetailLabel">营业时间：</span><span ng-repeat="timeObj in list.takeawayOpeningTimes">{{timeObj.startTime}}-{{timeObj.endTime}},</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

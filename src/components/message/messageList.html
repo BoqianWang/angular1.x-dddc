@@ -1,0 +1,20 @@
+<div infinite-scroll='messageReddit.nextPage()' infinite-scroll-disabled='messageReddit.busy' infinite-scroll-distance='0' style="margin-top: 55px;">
+	<div class="weui-cells">
+	  <div class="weui-cell" ng-repeat="list in messageReddit.items">
+	    <div class="weui-cell__bd">
+	      <p style="font-size: 12px; color: #999;">{{list.time}}</p>
+	      <p style="font-size: 16px; color: #333;">{{list.title}}</p>
+	      <p style="font-size: 14px; color: #666;">{{list.content}}</p>
+	    </div>
+	  </div>
+	</div>
+
+	<div ng-show="messageReddit.loading" class="weui-loadmore" style="margin: 0.5em auto ;">
+	  <i class="weui-loading"></i>
+	  <span class="weui-loadmore__tips">正在加载</span>
+	</div>
+
+	<div class="weui-loadmore weui-loadmore_line" ng-show="messageReddit.items.length<1">
+	  <span class="weui-loadmore__tips">暂无数据</span>
+	</div>
+</div>

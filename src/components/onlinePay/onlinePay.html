@@ -1,0 +1,84 @@
+<div class="weui-cells">
+  <div class="weui-cell">
+    <div class="weui-cell__bd">
+      <p>订单编号：{{orderObj.orderUuid}}</p>
+      <p>支付金额：<span style="color: #ff6e15;">￥{{orderObj.orderPayCost}}</span></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="weui-cells weui-cells_radio">
+  <label class="weui-cell weui-check__label" for="x11">
+  <div class="weui-cel__hd"><img src="images/pay_yue@2x.png" width="30px" height="30px"></div>
+    <div class="weui-cell__bd" style="margin-left: 10px;">
+      余额支付
+      <span  style="font-size: 14px;font-weight: normal;color: #666;">余额:￥{{money}}</span>
+    </div>
+    <div class="weui-cell__ft">
+      <input type="radio" class="weui-check" name="radio1" id="x11" ng-disabled="orderObj.orderPayCost>money">
+      <span class="weui-icon-checked"></span>
+    </div>
+  </label>
+  <label class="weui-cell weui-check__label" for="x12">
+	<div class="weui-cel__hd"><img src="images/pay_weixin@2x.png" width="30px" height="30px"></div>
+    <div class="weui-cell__bd" style="margin-left: 10px;">
+      <p>微信支付</p>
+    </div>
+    <div class="weui-cell__ft">
+      <input type="radio" name="radio1" class="weui-check" id="x12" ng-click="check(2)">
+      <span class="weui-icon-checked"></span>
+    </div>
+  </label>
+  <label class="weui-cell weui-check__label" for="x13">
+	<div class="weui-cel__hd"><img src="images/longzhifu@2x.png" width="30px" height="30px"></div>
+    <div class="weui-cell__bd" style="margin-left: 10px;">
+      <p>建行支付</p>
+    </div>
+    <div class="weui-cell__ft">
+      <input type="radio" name="radio1" class="weui-check" id="x13" checked="checked" ng-click="check(3)">
+      <span class="weui-icon-checked"></span>
+    </div>
+  </label>
+</div>
+
+<div class="login-div">
+  <button class="weui-btn weui-btn_primary login-btn" ng-click="surePayClick()">确认支付</button>
+</div>
+
+
+<form action="" method="post" name="MD5form" id="MD5form" target="_self">
+  <input name="MERCHANTID" type="hidden" class="text1" id="MERCHANTID" value="105584000000024">
+  <!-- 商户代码【MERCHANTID】 -->
+  <input name="POSID" type="hidden" class="text1" id="POSID" value="000853518">
+  <!-- 商户柜台代码【POSID】 -->
+  <input name="BRANCHID" type="hidden" class="text1" id="BRANCHID" value="442000000">
+  <!-- 分行代码【BRANCHID】 -->
+  <input name="ORDERID" type="hidden" class="text1" id="ORDERID" value="{{orderObj.orderUuid}}">
+  <!-- 定单号【ORDERID】 -->
+  <input name="PAYMENT" type="hidden" class="text1" id="PAYMENT" value="{{orderObj.orderPayCost}}">
+  <!-- 付款金额【PAYMENT】 -->
+  <input name="CURCODE" type="hidden" class="text1" id="CURCODE" value="01">
+  <!-- 币种【CURCODE】 -->
+  <input name="TXCODE" type="hidden" class="text1" id="TXCODE" value="520100">
+  <!-- 交易码【TXCODE】 -->
+  <input name="REMARK1" type="hidden" class="text1" id="REMARK1" value="">
+  <!-- 备注1【REMARK1】 -->
+  <input name="REMARK2" type="hidden" class="text1" id="REMARK2" value="">
+  <!-- 备注2【REMARK2】 -->
+  <input name="PUB32TR2" type="hidden" class="text1" id="PUB32TR2" value="e4685527142b42855d352411020111">
+  <!-- 公钥后30位【PUB】 -->
+  <input name="GATEWAY" type="hidden" class="text1" id="GATEWAY" value="">
+  <!-- 网关类型【GATEWAY】 -->
+  <input name="CLIENTIP" type="hidden" class="text1" id="CLIENTIP" value="">
+  <!--   客户端IP【CLIENTIP】-->
+  <input name="REGINFO" type="hidden" class="text1" id="REGINFO" value="doudoudc">
+  <!--  注册信息【REGINFO】-->
+  <input name="PROINFO" type="hidden" class="text1" id="PROINFO" value="dddcPay">
+  <!--   商品信息【PROINFO】-->
+  <input name="MER_REFERER" type="hidden" class="text1" id="MER_REFERER" value="">
+  <!-- 商户域名【REFERER -->
+  <input name="bankURL" type="hidden" class="text1" id="bankURL" value="https://ibsbjstar.ccb.com.cn/app/ccbMain">
+  <!-- 银行网址【URL】 -->
+  <input type="hidden" name="MAC" id="MAC" value="">
+</form>

@@ -1,0 +1,41 @@
+<div class="weui-cells editaddr-cells">
+  <div class="weui-cell">
+  	<div class="weui-cell__hd" style="width: 100px;">
+  		<p>联系人</p>
+  		<hr style="margin: 10px 0px;border-top:none;">
+  		<p style="color: white;">性别</p>
+  	</div>
+    <div class="weui-cell__bd">
+      <input class="weui-input" id="addr-name" type="text" placeholder="你的姓名">
+      <hr style="margin: 10px 0px;">
+      	<button class="check-btn" ng-click="check = 1"><img src="{{check ==1 ? 'images/checked@2x.png':'images/check@2x.png'}}">先生</button>
+      	<button class="check-btn" ng-click="check = 2"><img src="{{check ==2 ? 'images/checked@2x.png':'images/check@2x.png'}}">女士</button>
+    </div>
+  </div>
+  <div class="weui-cell">
+  	<div class="weui-cell__hd">
+  		<p>联系电话</p>
+  	</div>
+  	<div class="weui-cell__bd">
+  		<input class="weui-input" id="addr-tel" type="tel" placeholder="你的手机号" maxlength="11">
+  	</div>
+  </div>
+  <div class="weui-cell">
+  	<div class="weui-cell__hd" style="width: 100px;">
+  		<p>送餐地址</p>
+  		<hr style="margin: 10px 0px;border-top:none;">
+  		<p style="color: white;">详细地址</p>
+  	</div>
+    <div class="weui-cell__bd">
+      <input class="weui-input" id="" type="text" placeholder="选择位置" readonly="readonly" ng-click="searchClick()" ng-model="mapaddr">
+      <hr style="margin: 10px 0px;">
+      <input class="weui-input" id="" type="text" placeholder="详细地址" ng-model="detailaddr">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="login-div">
+	<button class="weui-btn weui-btn_primary login-btn" ng-click="editaddrClick()">确定</button>
+</div>

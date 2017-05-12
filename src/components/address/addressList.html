@@ -1,0 +1,29 @@
+<div style="margin-bottom: 50px;">
+<div class="weui-cells"  ng-repeat="list in addressList" style="margin-top: 10px;">
+	 <div class="weui-cell address-cell">
+		 <div class="weui-cell__hd"><i ng-show="list.check" class="weui-icon-success weui-icon_msg" style="font-size: 24px;
+    "></i></div>
+		   	 <div class="weui-cell__bd" style="font-size: 16px;margin-left: 10px;" ng-click="checkClick(list)">
+		      <p style="margin-bottom: 5px;">{{list.consignee}}{{list.gender == 1?'先生':'女士'}}&nbsp;&nbsp;&nbsp;{{list.phone}}</p>
+		      <p style="font-size: 14px;color: #666;">{{list.locationAddr + list.homeNumber}}</p>
+		     </div>
+		     <a class="weui-cell__ft" ng-click="updateAddr(list)">
+		     	<img src="images/addressEdit@2x.png" width="24" height="24">
+		     </a>
+	</div>
+</div>
+
+<div class="weui-loadmore" ng-show="isloading">
+  <i class="weui-loading"></i>
+  <span class="weui-loadmore__tips">正在加载</span>
+</div>
+
+<div class="weui-loadmore weui-loadmore_line" ng-show="!isloading&&addressList.length<1">
+  <span class="weui-loadmore__tips">暂无数据</span>
+</div>
+</div>
+ <a ng-click="goEditAddr()" class="weui-cell" style="background-color: white;position: fixed;bottom: 0px;width: 100%;">
+    <div class="weui-cell__bd" style="text-align: center;color: #ff6e15;">
+      <p>新增地址</p>
+    </div>
+ </a>

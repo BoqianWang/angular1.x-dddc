@@ -1,0 +1,100 @@
+<div style="margin-bottom: 55px;">
+  <div class="shopNav">
+    <a class="weui-cell" href="javascript:;" ng-click="popShopClick()">
+      <div class="weui-cell__hd"><img src="images/topbar_icon_location@2x.png" width="12px" height="17px"></div>
+      <div class="weui-cell__bd">
+        <p style="overflow:hidden;white-space:nowrap;max-width: 200px;color:#ff6e15;float: left;" ng-bind="currentAddress"></p>
+        <img src="images/topbar_icon_enter@2x.png" width="8" height="12" style="margin-left: 5px;float: left;margin-top: 6px;">
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+  </div>
+
+  <div ng-show="reddit.items.length>0" class="weui-cells__title">附近商家</div>
+  <div class="weui-cells" infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='0'>
+    <div ng-repeat="list in reddit.items" ui-sref="homeTabs.wmdishlist({bizId:list.bizId})">
+      <div class="row shopList">
+        <div class="weui-cell" style="padding-bottom: 10px;">
+          <div class="weui-cell__hd">
+            <img ng-src="{{list.shopLogo?list.shopLogo:'images/touxiang.png'}}" style="background-color: #f5f5f5;border-radius: 3px;" width="50" height="50">
+          </div>
+          <div class="weui-cell__bd" style="margin-left: 10px;">
+
+            <div class="row">
+              <p style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width: 200px;font-size: 15px;font-weight: bold;float: left;">{{list.shopName}}</p>
+              <p ng-repeat="txt in list.shopType.split('')" class="typeLabel pull-right">{{txt}}</p>
+            </div>
+            <div class="row" style="font-size: 12px;margin: 2px 0px;">
+              <div class="starBox">
+                <div class="star" ng-style="list.scoringWidth">
+
+                </div>
+              </div>
+              <span style="margin-left: 5px;color: #ff6e15;">{{list.scoring.toFixed(1)}}</span>
+            </div>
+            <div class="row" style="font-size: 12px;color: #999;" ng-if="list.type==1">
+              {{list.distance}}&nbsp;/&nbsp;&nbsp;{{list.distributionFee==0?"免配送费":"配送费￥"+list.distributionFee}}
+            </div>
+            <div class="row" style="font-size: 12px;color: #999;" ng-if="list.type==2">
+              {{list.distance}}&nbsp;/&nbsp;&nbsp;人均消费{{list.perCapitaFee==0?"暂无":"￥"+list.perCapitaFee}}&nbsp;/&nbsp;&nbsp;{{list.classifyName}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row youhuiRow" style="padding: 0px 0px 10px 75px;color: #999;font-size: 12px;" ng-show="list.TakeawayFullSubtract.length>0">
+        <div ng-show="list.fulls.length>0">
+          <span class="typeLabel" style="float: left;background-color: #ff6e15;color: white;margin-top: 4px;margin-right: 4px;">满</span>
+          <p style="float: left;margin-top: 5px;">{{list.fulls.join("，")}}</p>
+        </div>
+        <div ng-show="list.firsts.length>0">
+          <span class="typeLabel" style="float: left;background-color: #ff6e15;color: white;margin-top: 4px;margin-right: 4px;">首</span>
+          <p style="float: left;margin-top: 5px;">{{list.firsts.join("，")}}</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div ng-show="reddit.loading" class="weui-loadmore" style="margin: 0.5em auto ;">
+    <i class="weui-loading"></i>
+    <span class="weui-loadmore__tips">正在加载</span>
+  </div>
+</div>
+
+
+
+
+<div id="seleteAddr" class="weui-popup__container" style="z-index: 501;">
+  <div class="weui-popup__overlay"></div>
+  <div class="weui-popup__modal rightPop" style="background-color: #f5f5f5;">
+    <div class="nav" style="position: relative;">
+      <a class="col-xs-3 close-popup nav_left">
+        <img src="./images/back_white@2x.png">
+      </a>
+      <div class="col-xs-6 nav-title">选择地址</div>
+    </div>
+    <div class="row seleteadd_inputdiv">
+      <input class="selteadd_input" type="text" name="" placeholder="请输入地址" autofocus="autofocus" ng-model="txtaddr" ng-change="addressChange()">
+    </div>
+    <div ng-hide="addrList.length>0">
+      <div class="weui-cells__title">收货地址</div>
+      <div class="weui-cells">
+        <div class="weui-cell" ng-repeat="list in addressList" ng-click="seleteAddrClick(list)">
+          <div class="weui-cell__bd" style="font-size: 12px;">
+            <p><span style="font-size: 14px;font-weight: bold;">{{list.consignee}}</span>&nbsp;{{list.gender == 1?'先生':'女士'}}&nbsp;&nbsp;{{list.phone}}</p>
+            <p style="color: #999;">{{list.locationAddr}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells" ng-show="addrList.length>0">
+      <div class="weui-cell" ng-repeat="list in addrList" ng-click="backhomeShop(list)">
+        <div class="weui-cell__bd">
+          <p style="font-size: 14px;">{{list.title}}</p>
+          <p style="font-size: 12px;color: #666;">{{list.address}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

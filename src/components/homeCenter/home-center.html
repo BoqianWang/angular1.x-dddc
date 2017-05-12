@@ -1,0 +1,79 @@
+<div>
+  <div class="center-header">
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__bd">
+        <a class="weui-media-box weui-media-box_appmsg" ui-sref="homeTabs.usermsg" ng-show="ret">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="{{dataList.headImg}}">
+          </div>
+          <div class="weui-media-box__bd">
+            <div>
+              <h4 class="weui-media-box__title">{{dataList.nickname}}</h4>
+              <p class="weui-media-box__desc"></p>
+            </div>
+          </div>
+          <div class="weui-media-box__hd" style="width: 12px;margin-right: 0;">
+            <img src="images/arrow_right_white@2x.png" width="10px" height="15px">
+          </div>
+        </a>
+        <div class="weui-media-box weui-media-box_appmsg" ng-hide="ret">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="images/touxiang.png">
+          </div>
+          <div class="weui-media-box__bd">
+            <div>
+              <button class="center-login" ng-click="loginClick()">登&nbsp;录</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center-data">
+    <a ui-sref="homeTabs.yuelist({yue:dataList.balance})" class="col-xs-4">
+      <h4 style="color: #45c734;">{{dataList.balance}}<span>元</span></h4>
+      <p>余额</p>
+    </a>
+    <a href="" class="col-xs-4">
+      <h4 style="color: #ff6e15;">{{dataList.coupon}}<span>个</span></h4>
+      <p>红包</p>
+    </a>
+    <a ui-sref="homeTabs.jifen({point:dataList.points})" class="col-xs-4">
+      <h4 style="color: #34b3c7;">{{dataList.points}}<span>分</span></h4>
+      <p>积分</p>
+    </a>
+  </div>
+  <div class="center-li">
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" ui-sref="homeTabs.messagelist">
+        <div class="weui-cell__hd"><img src=""></div>
+        <div class="weui-cell__bd">
+          <p>消息中心</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+      <!-- 		  <a class="weui-cell weui-cell_access" ui-sref="homeTabs.addresslist">
+		    <div class="weui-cell__bd">
+		      <p>地址管理</p>
+		    </div>
+		    <div class="weui-cell__ft">
+		    </div>
+		  </a> -->
+      <a class="weui-cell weui-cell_access" ui-sref="homeTabs.share">
+        <div class="weui-cell__bd">
+          <p>分享有礼</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+      <a class="weui-cell weui-cell_access" ui-sref="homeTabs.xiaxian">
+        <div class="weui-cell__bd">
+          <p>我的下线</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

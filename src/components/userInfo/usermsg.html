@@ -1,0 +1,35 @@
+<div class="weui-cells">
+  <div class="weui-cell weui-cell_access">
+    <div class="weui-cell__bd">
+      <p>头像</p>
+    </div>
+    <div class="weui-cell__ft">
+    <img src="{{data.headImg}}" width="40" height="40" style="border-radius: 20px;">
+    </div>
+  </div>
+  <a  class="weui-cell weui-cell_access" ng-click="cellClick(2)">
+    <div class="weui-cell__bd">
+      <p>用户名</p>
+    </div>
+    <div class="weui-cell__ft">{{data.nickname}}
+    </div>
+  </a>
+  <a class="weui-cell weui-cell_access">
+    <div class="weui-cell__bd">
+      <p>手机号</p>
+    </div>
+    <div class="weui-cell__ft">{{data.username}}
+    </div>
+  </a>
+  <a class="weui-cell weui-cell_access" ui-sref="homeTabs.setpassword({loginPassword:data.loginPassword})">
+    <div class="weui-cell__bd">
+      <p>登录密码</p>
+    </div>
+    <div class="weui-cell__ft">{{data.loginPassword==true?"修改":"设置"}}
+    </div>
+  </a>
+</div>
+
+<div style="padding: 25px 10px;">
+  <a href="javascript:;" class="weui-btn weui-btn_warn login-btn" ng-click="loginOutClick()">退出登录</a>
+</div>

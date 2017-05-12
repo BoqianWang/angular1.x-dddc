@@ -1,0 +1,27 @@
+<div>
+	<div class="weui-cells">
+		<div class="weui-cell" style="padding: 7px 15px;">
+			<div class="weui-cell__bd">
+				<input class="weui-input" id="usertel" type="tel" placeholder="手机号" ng-model="phone" maxlength="11">
+			</div>
+			<div class="weui-cell__ft">
+				<button class="weui-btn" ng-class="codeClass" ng-disabled="!isCodeClick" ng-click="codeClick()"> <i class="weui-loading" ng-show="isreq"></i>{{codemsg}}</button>
+			</div>
+		</div>
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<input class="weui-input" id="codetel" type="tel" placeholder="验证码">
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="login-div">
+		<button class="weui-btn weui-btn_primary login-btn" ng-click="loginClick()">登录</button>
+	</div>
+
+	<div  style="text-align: right;margin: 10px 12px;">
+		<a ui-sref="homeTabs.passworlogin" style="color: #ff6e12;">密码登录>></a>
+	</div>
+
+</div>

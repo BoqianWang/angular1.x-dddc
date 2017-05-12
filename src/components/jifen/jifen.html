@@ -1,0 +1,28 @@
+<div>
+	<div class="jifen-head weui-form-preview__bd">
+		<div class="row" style="font-size: 12px;">
+			<p class="pull-left" style="color: white;">当前积分</p>
+			<a class="pull-right">积分规则</a>
+		</div>
+		<div class="row">
+			<p class="pull-left" style="color: white;font-size: 24px;">{{point}}<span style="font-size: 12px;">分</span></p>
+		</div>
+		<div class="row">
+			<a href="javascript:;" class="weui-btn weui-btn_primary weui-toast_content" ng-click="duihClick()">兑换余额</a>
+		</div>
+	</div>
+	<div class="weui-cells__title">积分明细</div>
+	<div class="weui-cells">
+		  <div class="weui-cell" ng-repeat="list in pointList">
+		   	 <div class="weui-cell__bd">
+		      <p style="font-size: 16px;">{{list.dealType==0?'支出':'收入'}}</p>
+		      <p style="font-size: 14px;color: #999;">{{list.dealTime}}</p>
+		     </div>
+		     <div class="weui-cell__ft" style="color: #ff6e15;">{{list.dealType==0?'-':'+'}}{{list.dealPoints}}</div>
+	 	 </div>
+
+	</div>
+	<div class="weui-loadmore weui-loadmore_line" ng-hide="pointList.length>0">
+		 <span class="weui-loadmore__tips" style="">暂无数据</span>
+	</div>
+</div>

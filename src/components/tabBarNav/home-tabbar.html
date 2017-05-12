@@ -1,0 +1,21 @@
+  <div class="weui-tabbar">
+    <a ui-sref="home.shop" ng-click="selete = 1">
+      <!-- <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span> -->
+      <div class="weui-tabbar__icon">
+        <img ng-src="{{selete ==1 ? './images/bottombar_shouye@2x.png':'./images/bottombar_shouye_gray@2x.png'}}" alt="">
+      </div>
+      <p class="weui-tabbar__label">店铺</p>
+    </a>
+    <a ui-sref="home.order" ng-click="selete = 2">
+      <div class="weui-tabbar__icon">
+        <img ng-src="{{selete ==2 ? './images/bottombar_dingdan@2x.png':'./images/bottombar_dingdan_gray@2x.png'}}" alt="">
+      </div>
+      <p class="weui-tabbar__label">订单</p>
+    </a>
+    <a ui-sref="home.center" ng-click="selete = 3">
+      <div class="weui-tabbar__icon">
+        <img ng-src="{{selete ==3 ? './images/bottombar_wode@2x.png':'./images/bottombar_wode_gray@2x.png'}}" alt="">
+      </div>
+      <p class="weui-tabbar__label">我的</p>
+    </a>
+  </div>
